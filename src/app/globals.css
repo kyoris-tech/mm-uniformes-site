@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #1c2230;
+
+  /* Paleta MM Uniformes (extraída da logo) */
+
+  --mm-navy: #14284a; /* fundo escuro / header do rodapé */
+  --mm-navy-deep: #0e1c33; /* rodapé */
+  --mm-blue: #2b4c8c; /* azul da marca */
+  --mm-blue-light: #3f63ab;
+  --mm-orange: #e8622c; /* laranja de destaque (CTA) */
+  --mm-orange-deep: #c94f1f; /* uso em texto sobre fundo claro (contraste) */
+  --mm-gray: #4d4d4d; /* cinza da marca */
+  --mm-cream: #f1f2f5; /* fundo neutro claro alternado */
+  --mm-whatsapp: #25d366;
+
+  /* Papéis semânticos */
+  --color-primary: var(--mm-navy);
+  --color-primary-light: var(--mm-blue);
+  --color-secondary: var(--mm-orange);
+  --color-secondary-deep: var(--mm-orange-deep);
+  --color-accent: var(--mm-blue);
+
+  /* Tokens de texto usados pelo componente <Text /> */
+  --text-color-default: #1c2230;
+  --text-color-muted: #5b6472;
+  --text-color-inverse: #ffffff;
+  --text-color-inverse-muted: rgba(255, 255, 255, 0.78);
+  --text-color-primary: var(--color-primary);
+  --text-color-secondary: var(--color-secondary-deep);
+  --text-color-accent: var(--color-accent);
+
+  --section-title-offset: 1.5rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-manrope);
+  --font-heading: var(--font-space-grotesk);
+
+  --color-mm-navy: var(--mm-navy);
+  --color-mm-navy-deep: var(--mm-navy-deep);
+  --color-mm-blue: var(--mm-blue);
+  --color-mm-blue-light: var(--mm-blue-light);
+  --color-mm-orange: var(--mm-orange);
+  --color-mm-orange-deep: var(--mm-orange-deep);
+  --color-mm-gray: var(--mm-gray);
+  --color-mm-cream: var(--mm-cream);
+
+  --color-primary: var(--color-primary);
+  --color-primary-light: var(--color-primary-light);
+  --color-secondary: var(--color-secondary);
+  --color-secondary-deep: var(--color-secondary-deep);
+  --color-accent: var(--color-accent);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+.font-heading {
+  font-family: var(--font-heading), var(--font-sans), sans-serif;
+}
+
+.pt-section-title {
+  padding-top: var(--section-title-offset);
+}
+
+@media (min-width: 640px) {
+  .pt-section-title {
+    padding-top: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pt-section-title {
+    padding-top: 4rem;
+  }
+}
+
+/* Placeholder de foto: usado enquanto as fotos reais dos uniformes/produção
+   não são enviadas pelo cliente. Substituir todo uso de <PhotoPlaceholder />
+   por <Image> real assim que as fotos chegarem. */
+.photo-placeholder {
+  background-color: var(--mm-navy);
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.045) 0px,
+    rgba(255, 255, 255, 0.045) 2px,
+    transparent 2px,
+    transparent 14px
+  );
+}
+
+/* Animação de troca de foto na galeria de segmentos (ver Segmentos.tsx):
+   reaplicada a cada clique num badge via "key" no elemento, para dar um
+   feedback visual claro de que a imagem mudou. */
+@keyframes segment-photo-fade {
+  from {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.segment-photo-transition {
+  animation: segment-photo-fade 400ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .segment-photo-transition {
+    animation: none;
+  }
+}

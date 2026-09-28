@@ -1,0 +1,17 @@
+export { ImagePlaceholderIcon } from "./ImagePlaceholderIcon";
+export { WhatsAppIcon } from "./WhatsAppIcon";
+export { MenuIcon } from "./MenuIcon";
+export { CloseIcon } from "./CloseIcon";
+export { ArrowRightIcon } from "./ArrowRightIcon";
+export { CustomizeIcon } from "./CustomizeIcon";
+export { ChatIcon } from "./ChatIcon";
+export { ShieldIcon } from "./ShieldIcon";
+export { ClockIcon } from "./ClockIcon";
+export { PrintIcon } from "./PrintIcon";
+export { EmbroideryIcon } from "./EmbroideryIcon";
+export { ScissorsIcon } from "./ScissorsIcon";
+export { LocationIcon } from "./LocationIcon";
+export { MailIcon } from "./MailIcon";
+export { PhoneIcon } from "./PhoneIcon";
+export { ZoomIcon } from "./ZoomIcon";
+export type { IconProps } from "./icon.types";
