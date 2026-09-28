@@ -129,3 +129,60 @@ body {
     animation: none;
   }
 }
+
+/* "Como funciona" (ver ComoFunciona.tsx): brilho contínuo que percorre os
+   números 01-04 em sequência (1, 2, 3, 4, volta pro 1...), dando ênfase a
+   uma etapa por vez, sem JS. Os 4 cards compartilham o mesmo keyframe de 3s
+   (o brilho de cada um acontece nos primeiros ~8% do ciclo) e cada
+   ":nth-child" só COMEÇA a tocar sua animação num instante posterior via
+   "animation-delay" positivo (0s, 0.75s, 1.5s, 2.25s — um quarto do ciclo
+   de cada vez). Importante usar delay POSITIVO aqui: um delay negativo faz
+   o elemento "pular" pra frente no próprio ciclo em vez de atrasar o
+   início, o que inverte a ordem depois da primeira volta (era o bug: a
+   sequência ia 1, 4, 3, 2 em vez de 1, 2, 3, 4). */
+@keyframes como-funciona-glow {
+  0%,
+  100% {
+    color: rgba(255, 255, 255, 0.25);
+    text-shadow: none;
+  }
+  8% {
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow:
+      0 0 18px rgba(255, 255, 255, 0.45),
+      0 0 34px rgba(232, 98, 44, 0.5);
+  }
+  /* Apaga rápido logo depois do pico (8% -> 20%, ~0,36s de um ciclo de 3s),
+     em vez de ir esmaecendo devagar até quase o fim do ciclo. */
+  20% {
+    color: rgba(255, 255, 255, 0.25);
+    text-shadow: none;
+  }
+}
+
+.como-funciona-number {
+  animation: como-funciona-glow 3s ease-in-out infinite;
+}
+
+.como-funciona-grid > :nth-child(1) .como-funciona-number {
+  animation-delay: 0s;
+}
+
+.como-funciona-grid > :nth-child(2) .como-funciona-number {
+  animation-delay: 0.75s;
+}
+
+.como-funciona-grid > :nth-child(3) .como-funciona-number {
+  animation-delay: 1.5s;
+}
+
+.como-funciona-grid > :nth-child(4) .como-funciona-number {
+  animation-delay: 2.25s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .como-funciona-number {
+    animation: none;
+    color: rgba(255, 255, 255, 0.25);
+  }
+}

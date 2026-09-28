@@ -34,7 +34,7 @@ export function Segmentos() {
     <section id="segmentos" className="bg-mm-cream py-20">
       <Container>
         <div className="grid gap-10 lg:grid-cols-2 lg:items-stretch lg:gap-16">
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-8 lg:order-2">
             <div className="max-w-lg">
               <Text as="h2" size="3xl" weight="bold" color="primary" className="leading-tight">
                 Atendemos empresas de diferentes segmentos.
@@ -74,7 +74,7 @@ export function Segmentos() {
             type="button"
             onClick={() => setIsModalOpen(true)}
             aria-label={`Ampliar exemplo de uniforme para ${activeSegmento.label}`}
-            className="group relative cursor-zoom-in text-left lg:h-full"
+            className="group relative cursor-zoom-in text-left lg:order-1 lg:h-full"
           >
             {/* Mobile: mantém a proporção 16:9 (não há coluna de texto para
                 "casar" em altura). Desktop (lg+): abandona a proporção fixa e

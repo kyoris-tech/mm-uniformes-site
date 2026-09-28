@@ -22,14 +22,17 @@ export function ComoFunciona() {
           </Text>
         </div>
 
-        <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="como-funciona-grid mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {passosComoFunciona.map((passo) => (
-            <div key={passo.number} className="flex flex-col gap-3">
+            <div key={passo.number} className="flex flex-col gap-4">
+              {/* Brilho contínuo (ver globals.css) que destaca uma etapa por
+                  vez, em sequência, num loop de 8s — a ordem de cada card no
+                  grid decide sua vez via ":nth-child" no CSS. */}
               <Text
                 as="span"
-                size="4xl"
+                size="5xl"
                 weight="bold"
-                className="text-white/25"
+                className="como-funciona-number text-white/25"
               >
                 {passo.number}
               </Text>

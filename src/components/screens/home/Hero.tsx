@@ -14,11 +14,13 @@ export function Hero() {
       className="relative flex min-h-screen items-end overflow-hidden pt-28 pb-16"
     >
       {/* Foto de banco de imagens (Pexels) usada como referência visual até o
-          cliente enviar fotos reais da equipe/fábrica. A própria imagem tem
-          uma faixa desfocada extra no topo (ver script de otimização) para
-          que o rosto das pessoas nunca fique atrás do menu flutuante —
-          "object-top" garante que essa faixa fique sempre colada ao topo,
-          em qualquer altura de tela. */}
+          cliente enviar fotos reais da equipe/fábrica. A própria foto já tem
+          espaço vazio (parede) acima da equipe, então "object-top" ancora
+          esse espaço no topo — sem precisar esticar/desfocar a imagem — e
+          mantém o rosto das pessoas longe do menu flutuante em qualquer
+          proporção de tela. (Chegamos a testar uma faixa desfocada extra
+          colada no topo do arquivo, mas em telas largas/baixas ela distorcia
+          a proporção da foto e acabava dominando boa parte da hero — revertido.) */}
       <Image
         src="/images/hero-equipe-uniformizada.jpg"
         alt="Equipe uniformizada em ambiente profissional"
@@ -27,8 +29,7 @@ export function Hero() {
         sizes="100vw"
         className="object-cover object-top"
       />
-      {/* Esmaece a costura entre a faixa desfocada e a foto nítida, e ajuda
-          o menu flutuante a manter contraste sobre a imagem. */}
+      {/* Leve escurecida no topo pra dar mais contraste ao menu flutuante. */}
       <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/35 to-transparent" />
       <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/45 to-black/20" />
 
