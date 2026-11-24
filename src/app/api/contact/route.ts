@@ -6,11 +6,13 @@ import { isValidEmail } from "@/lib/form";
 // configurar RESEND_API_KEY (conta gratuita em resend.com) no .env.local
 // antes de publicar. Sem a chave, o formulário responde com erro amigável
 // em vez de falhar silenciosamente.
-const TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? "contato@mmuniformes.com.br";
+const TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? "mm@mmconfeccao.com.br";
 const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL ?? "MM Uniformes <onboarding@resend.dev>";
 
 interface ContactPayload {
   name?: string;
+  company?: string;
+  cnpj?: string;
   email?: string;
   phone?: string;
   message?: string;
@@ -48,6 +50,8 @@ export async function POST(request: Request) {
   const message = payload.message?.trim();
   const email = payload.email?.trim() ?? "";
   const phone = payload.phone?.trim() ?? "";
+  const company = payload.company?.trim() ?? "";
+  const cnpj = payload.cnpj?.trim() ?? "";
 
   if (!name || !message) {
     return NextResponse.json(
@@ -67,10 +71,12 @@ export async function POST(request: Request) {
       from: FROM_EMAIL,
       to: TO_EMAIL,
       replyTo: email || undefined,
-      subject: `Novo contato pelo site — ${name}`,
+      subject: `Novo contato pelo site — ${name}${company ? ` (${company})` : ""}`,
       html: `
         <div style="font-family: sans-serif; font-size: 15px; color: #171717;">
           <p><strong>Nome:</strong> ${escapeHtml(name)}</p>
+          ${company ? `<p><strong>Empresa:</strong> ${escapeHtml(company)}</p>` : ""}
+          ${cnpj ? `<p><strong>CNPJ:</strong> ${escapeHtml(cnpj)}</p>` : ""}
           ${email ? `<p><strong>E-mail:</strong> ${escapeHtml(email)}</p>` : ""}
           ${phone ? `<p><strong>Telefone:</strong> ${escapeHtml(phone)}</p>` : ""}
           <p><strong>O que precisa de uniforme:</strong></p>

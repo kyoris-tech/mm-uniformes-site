@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
+import { PhotoPlaceholder } from "@/components/ui/PhotoPlaceholder";
 import { Text } from "@/components/ui/Text";
 import { servicos } from "./servicos-data";
 
@@ -23,21 +24,25 @@ export function Servicos() {
           </Text>
         </div>
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-3">
+        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {servicos.map((servico) => (
             <div
               key={servico.id}
               className="flex flex-col gap-5 overflow-hidden rounded-3xl bg-white pb-6 shadow-lg shadow-neutral-900/5"
             >
-              <div className="relative aspect-[16/9] w-full overflow-hidden">
-                <Image
-                  src={servico.photoSrc}
-                  alt={servico.photoAlt}
-                  fill
-                  sizes="(min-width: 1024px) 33vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
+              {servico.photoSrc ? (
+                <div className="relative aspect-[16/9] w-full overflow-hidden">
+                  <Image
+                    src={servico.photoSrc}
+                    alt={servico.photoAlt}
+                    fill
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              ) : (
+                <PhotoPlaceholder label={servico.photoAlt} aspect="wide" rounded={false} />
+              )}
 
               <div className="flex flex-col gap-3 px-6">
                 <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">

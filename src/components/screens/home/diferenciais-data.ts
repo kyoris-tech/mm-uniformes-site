@@ -39,7 +39,7 @@ export const diferenciais: Diferencial[] = [
   {
     id: "prazo",
     icon: ClockIcon,
-    title: "Prazo combinado, prazo cumprido",
+    title: "Prazo",
     description:
       "Cronograma de produção alinhado com você desde o fechamento do pedido.",
   },

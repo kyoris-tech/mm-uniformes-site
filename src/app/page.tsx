@@ -4,6 +4,7 @@ import {
   Diferenciais,
   Hero,
   Producao,
+  Produtos,
   Segmentos,
   Servicos,
 } from "@/components/screens/home";
@@ -16,6 +17,7 @@ export default function Home() {
       <Diferenciais />
       <Producao />
       <Segmentos />
+      <Produtos />
       <ComoFunciona />
       <Contato />
     </main>

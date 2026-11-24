@@ -15,7 +15,7 @@ export function Segmentos() {
   const activeSegmento = segmentos[activeIndex];
 
   // Mesma estratégia usada na galeria do site da Letmor: como a foto é trocada
-  // clicando num badge (não é lazy por natureza), pré-carregamos todas as 8
+  // clicando num badge (não é lazy por natureza), pré-carregamos todas as
   // fotos assim que a seção monta, com <img> nativo (fora do Next/Image). São
   // poucas fotos e leves, então o custo é baixo — e assim, quando o usuário
   // clica num segmento, a foto já está no cache do navegador e aparece na

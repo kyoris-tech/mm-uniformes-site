@@ -25,7 +25,8 @@ export function Diferenciais() {
             color="primary"
             className="mt-3 leading-tight"
           >
-            Uniformes pensados para o seu negócio, do início ao fim.
+            Aqui você não compra uniforme, você veste a identidade da sua
+            empresa.
           </Text>
         </div>
 

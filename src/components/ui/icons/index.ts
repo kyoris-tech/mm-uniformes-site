@@ -14,4 +14,5 @@ export { LocationIcon } from "./LocationIcon";
 export { MailIcon } from "./MailIcon";
 export { PhoneIcon } from "./PhoneIcon";
 export { ZoomIcon } from "./ZoomIcon";
+export { ReflectiveIcon } from "./ReflectiveIcon";
 export type { IconProps } from "./icon.types";

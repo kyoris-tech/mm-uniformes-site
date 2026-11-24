@@ -24,3 +24,18 @@ export function formatPhone(value: string) {
 
   return formatted;
 }
+
+// Máscara de CNPJ: 00.000.000/0000-00
+export function formatCnpj(value: string) {
+  const digits = value.replace(/\D/g, "").slice(0, 14);
+
+  return digits
+    .replace(/^(\d{2})(\d)/, "$1.$2")
+    .replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3")
+    .replace(/\.(\d{3})(\d)/, ".$1/$2")
+    .replace(/(\d{4})(\d)/, "$1-$2");
+}
+
+export function isValidCnpjLength(value: string) {
+  return value.replace(/\D/g, "").length === 14;
+}

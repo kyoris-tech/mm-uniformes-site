@@ -5,6 +5,7 @@ import { Text } from "@/components/ui/Text";
 const producaoDestaques = [
   "Silk screen e bordado computadorizado próprios",
   "Confecção sob medida por número e função da equipe",
+  "Modelagem que veste bem a sua equipe",
   "Acompanhamento do pedido do orçamento à entrega",
 ];
 

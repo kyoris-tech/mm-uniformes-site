@@ -27,18 +27,6 @@ export const segmentos: Segmento[] = [
     photoAlt: "Profissionais de saúde uniformizados em ambiente hospitalar",
   },
   {
-    id: "alimentacao",
-    label: "Alimentação",
-    photoSrc: "/images/segmento-alimentacao.jpg",
-    photoAlt: "Cozinheiros uniformizados trabalhando em cozinha profissional",
-  },
-  {
-    id: "educacao",
-    label: "Educação",
-    photoSrc: "/images/segmento-educacao.jpg",
-    photoAlt: "Profissional da educação em sala de aula",
-  },
-  {
     id: "comercio-servicos",
     label: "Comércio e Serviços",
     photoSrc: "/images/segmento-comercio-servicos.jpg",

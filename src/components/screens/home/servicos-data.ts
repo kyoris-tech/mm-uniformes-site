@@ -1,5 +1,10 @@
 import type { ComponentType } from "react";
-import { EmbroideryIcon, PrintIcon, ScissorsIcon } from "@/components/ui/icons";
+import {
+  EmbroideryIcon,
+  PrintIcon,
+  ReflectiveIcon,
+  ScissorsIcon,
+} from "@/components/ui/icons";
 import type { IconProps } from "@/components/ui/icons";
 
 export interface Servico {
@@ -7,7 +12,8 @@ export interface Servico {
   icon: ComponentType<IconProps>;
   title: string;
   description: string;
-  photoSrc: string;
+  // Sem foto ainda: o card mostra um PhotoPlaceholder até o cliente enviar.
+  photoSrc?: string;
   photoAlt: string;
 }
 
@@ -40,5 +46,13 @@ export const servicos: Servico[] = [
       "Modelagem e costura ajustadas por função e numeração da sua equipe.",
     photoSrc: "/images/servico-confeccao-sob-medida.jpg",
     photoAlt: "Corte de tecido sob medida com régua e tesoura",
+  },
+  {
+    id: "faixa-refletiva",
+    icon: ReflectiveIcon,
+    title: "Aplicação de Faixa Refletiva",
+    description:
+      "Faixas refletivas aplicadas em coletes, camisas e calças para mais visibilidade e segurança da equipe.",
+    photoAlt: "Uniforme com aplicação de faixa refletiva",
   },
 ];

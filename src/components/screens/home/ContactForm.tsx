@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Text } from "@/components/ui/Text";
 import { cn } from "@/lib/cn";
-import { formatPhone, isValidEmail } from "@/lib/form";
+import { formatCnpj, formatPhone, isValidCnpjLength, isValidEmail } from "@/lib/form";
 
 function getInputClassName(hasError: boolean) {
   return cn(
@@ -22,9 +22,29 @@ export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [phone, setPhone] = useState("");
   const [emailError, setEmailError] = useState<string | null>(null);
+  const [cnpj, setCnpj] = useState("");
+  const [cnpjError, setCnpjError] = useState<string | null>(null);
 
   function handlePhoneChange(event: ChangeEvent<HTMLInputElement>) {
     setPhone(formatPhone(event.target.value));
+  }
+
+  function validateCnpj(value: string) {
+    if (value.trim() && !isValidCnpjLength(value)) {
+      setCnpjError("O CNPJ deve ter 14 dígitos.");
+      return false;
+    }
+    setCnpjError(null);
+    return true;
+  }
+
+  function handleCnpjChange(event: ChangeEvent<HTMLInputElement>) {
+    setCnpj(formatCnpj(event.target.value));
+    if (cnpjError) setCnpjError(null);
+  }
+
+  function handleCnpjBlur(event: FocusEvent<HTMLInputElement>) {
+    validateCnpj(event.target.value);
   }
 
   function validateEmail(value: string) {
@@ -52,6 +72,11 @@ export function ContactForm() {
       return;
     }
 
+    if (!validateCnpj(cnpj)) {
+      form.querySelector<HTMLInputElement>("#cnpj")?.focus();
+      return;
+    }
+
     setStatus("sending");
 
     try {
@@ -60,6 +85,8 @@ export function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: data.get("name"),
+          company: data.get("company"),
+          cnpj,
           email,
           phone: data.get("phone"),
           message: data.get("message"),
@@ -71,6 +98,7 @@ export function ContactForm() {
       setStatus("success");
       form.reset();
       setPhone("");
+      setCnpj("");
     } catch {
       setStatus("error");
     }
@@ -90,9 +118,52 @@ export function ContactForm() {
             name="name"
             type="text"
             required
-            placeholder="Seu nome"
+            placeholder="Nome de quem está entrando em contato"
             className={getInputClassName(false)}
           />
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="company">
+              <Text as="span" size="sm" weight="semibold" color="primary">
+                Empresa
+              </Text>
+            </label>
+            <input
+              id="company"
+              name="company"
+              type="text"
+              autoComplete="organization"
+              placeholder="Nome da empresa"
+              className={getInputClassName(false)}
+            />
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="cnpj">
+              <Text as="span" size="sm" weight="semibold" color="primary">
+                CNPJ
+              </Text>
+            </label>
+            <input
+              id="cnpj"
+              name="cnpj"
+              type="text"
+              inputMode="numeric"
+              value={cnpj}
+              onChange={handleCnpjChange}
+              onBlur={handleCnpjBlur}
+              aria-invalid={Boolean(cnpjError)}
+              placeholder="00.000.000/0000-00"
+              className={getInputClassName(Boolean(cnpjError))}
+            />
+            {cnpjError && (
+              <Text size="xs" color="secondary">
+                {cnpjError}
+              </Text>
+            )}
+          </div>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">

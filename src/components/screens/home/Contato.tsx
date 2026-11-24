@@ -9,8 +9,7 @@ import { ContactForm } from "./ContactForm";
 const WHATSAPP_MESSAGE =
   "Olá! Vim pelo site da MM Uniformes e gostaria de solicitar um orçamento.";
 
-// TODO: substituir pelo e-mail real de contato da MM Uniformes antes de publicar.
-const EMAIL = "contato@mmuniformes.com.br";
+const EMAIL = "mm@mmconfeccao.com.br";
 
 export function Contato() {
   return (

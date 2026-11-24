@@ -1,7 +1,6 @@
-// TODO: substituir pelo número de WhatsApp real da MM Uniformes (com DDI+DDD,
-// só dígitos, ex.: "5513999999999") antes de publicar o site.
-const WHATSAPP_NUMBER = "SEU_NUMERO_WHATSAPP";
-export const WHATSAPP_DISPLAY_NUMBER = "(xx) x xxxx-xxxx";
+// Número de WhatsApp da MM Uniformes (DDI+DDD, só dígitos).
+const WHATSAPP_NUMBER = "5513978237577";
+export const WHATSAPP_DISPLAY_NUMBER = "(13) 97823-7577";
 
 export function getWhatsAppUrl(message: string) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
